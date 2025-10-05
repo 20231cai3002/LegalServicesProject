@@ -22,8 +22,9 @@ This project is an online legal services platform that connects clients with law
 ## Installation
 
 1. Clone the repository:
+
    ```
- git clone <repo-url>
+   git clone <Repo>
    ```
 
 2. Navigate to the project directory:
