@@ -17,7 +17,7 @@ services:
     container_name: legal-backend
     restart: always
     environment:
-      DATABASE_URL=mongodb://mongo:27017/legaldb
+      DATABASE_URL: "mongodb://mongo:27017/legaldb"
     ports:
       - "3000:3000"
     depends_on:

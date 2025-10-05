@@ -23,7 +23,7 @@ This project is an online legal services platform that connects clients with law
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/legal-services-backend.git
+   git clone <Repo>
    ```
 
 2. Navigate to the project directory:
