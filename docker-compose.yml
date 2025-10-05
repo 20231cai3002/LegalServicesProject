@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:6
+    container_name: legal-mongo
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: legaldb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build: ./legal-services-backend
+    container_name: legal-backend
+    restart: always
+    environment:
+      DATABASE_URL=mongodb://mongo:27017/legaldb
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+
+  frontend:
+    build: ./Forntend
+    container_name: legal-frontend
+    restart: always
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:
