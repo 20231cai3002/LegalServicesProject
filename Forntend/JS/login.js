@@ -1,3 +1,5 @@
+const { ClientController } = require('../controllers/clientController');
+
 document.getElementById("loginForm").addEventListener("submit", async function(e) {
   e.preventDefault();
 
@@ -23,3 +25,5 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     alert("❌ " + err.message);
   }
 });
+
+module.exports = ClientController;
