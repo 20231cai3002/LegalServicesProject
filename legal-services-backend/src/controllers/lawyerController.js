@@ -27,6 +27,16 @@ class LawyerController {
         // Logic to retrieve a lawyer by ID
     }
 
+    async getLawyers(req, res) {
+        try {
+            const lawyers = await Lawyer.find().sort({ createdAt: -1 });
+            return res.status(200).json(lawyers);
+        } catch (error) {
+            console.error('getLawyers error:', error);
+            return res.status(500).json({ message: 'Server error' });
+        }
+    }
+
     async updateLawyer(req, res) {
         // Logic to update a lawyer's information
     }

@@ -1,10 +1,13 @@
 const express = require('express');
-const LawyerController = require('../controllers/lawyerController');
 const router = express.Router();
-const lawyerController = new LawyerController();
+const lawyerController = require('../controllers/lawyerController');
 
-// POST /api/lawyers (signup)
-router.post('/', lawyerController.createLawyer.bind(lawyerController));
-// ...existing code for get, put, delete if needed...
+// POST /api/lawyers/  -> existing createLawyer
+router.post('/', lawyerController.createLawyer);
+
+// New: GET /api/lawyers/ -> list all lawyers
+router.get('/', lawyerController.getLawyers);
+
+// ...existing code for put, delete if needed...
 
 module.exports = router;
