@@ -7,10 +7,10 @@
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  
+
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -50,29 +50,30 @@
 
   <!-- Custom JS for Dynamic Navbar -->
   <script>
-    const loggedInUser = localStorage.getItem("loggedInUser");
-    const welcomeMsg = document.getElementById("welcomeMessage");
-    const navButtons = document.getElementById("navButtons");
-    const getStartedBtn = document.getElementById("getStartedBtn");
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+  e.preventDefault();
 
-    function updateNavbar() {
-      if (loggedInUser) {
-        // Show welcome message
-        welcomeMsg.textContent = `🎉 Welcome back, ${loggedInUser}!`;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
-        // Hide login/signup buttons and show Logout
-        navButtons.innerHTML = `<button class="btn btn-warning fw-semibold" id="logoutBtn">Logout</button>`;
-
-        // Hide Get Started button
-        getStartedBtn.style.display = 'none';
-
-        // Add logout functionality
-        document.getElementById("logoutBtn").addEventListener("click", () => {
-          localStorage.removeItem("loggedInUser");
-          window.location.reload();
-        });
-      }
+  fetch("http://localhost:3000/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if(data.success){
+      localStorage.setItem("loggedInUser", email); // Save logged-in user
+      alert("✅ Login successful!");
+      window.location.href = "index.html"; // Redirect to index
+    } else {
+      alert("❌ Invalid credentials");
     }
+  })
+  .catch(err => console.error("Error:", err));
+});
+</script>
 
     // Call the function on page load
     updateNavbar();
